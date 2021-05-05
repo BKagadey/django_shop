@@ -1,0 +1,22 @@
+body {
+    background: bisque;
+}
+
+.product_title {
+    font-style: 30px;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.product_text {
+    padding-right: 20px;
+}
+
+.product_desc {
+    font-style: 16px;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+}
+

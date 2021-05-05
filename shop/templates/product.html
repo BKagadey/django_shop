@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Abouto Shop{% endblock title %}
+
+
+{% block content %}
+<h1>{{ product.name }} !</h1>
+    <div class="container py-5">
+        <div class="row mt-5">
+            <div class="col-10 mx-auto col-md-6 my-3">
+                <img src="{{ product.image.url}}" alt=""></div>
+        </div>
+    </div>
+    <div class="col-10 mx-auto col-md-6 my-3"> 
+        <h1 class="product_title">{{ product.name }}</h1>
+        <h5 class="text-info font-italic mb-0">{{ product.price }}</h5>
+        <p class="product_desc">product_desc</p>
+        <p class="text-justify product_text">
+            {{ product.description }}
+        </p>
+        {% if product.stock <= 0 %}
+            <p class="text-justify product_text">Out of stock!</p>
+        {% else %}
+            <p class="text-justify product_text"> Add to cart! </p>
+        {% endif %}
+    </div>
+{% endblock content %}
