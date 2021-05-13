@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+        
+    #Third party
+    'crispy_forms',
 
     #LOCAL
     'shop.apps.ShopConfig',
@@ -69,6 +72,7 @@ TEMPLATES = [
 
                 #Third party
                 'shop.context_processors.manu_links',
+                'shop.context_processors.counter',
             ],
         },
     },
@@ -140,3 +144,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

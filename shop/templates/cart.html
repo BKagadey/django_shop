@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Your cart{% endblock title %}
+
+{% block content %}
+    {% if not cart_items %}
+        <div class="text-center">
+            <br>
+            <h1 class="text-center product_title">Your cart is empty</h1>
+            <a href=""></a><br>
+            <p class="text-center">
+                Click <a href="{% url 'home' %}">here</a> to return to shop
+            </p>
+        </div>
+    {% else %}
+    <div class="text-center">
+        <br>
+        <div class="text-center product_title">
+            Shoping cart
+        </div>
+    </div>
+    <div class="row mx-auto">
+        <div class="col12 col-sm-12 col-lg-6 text-center">
+            <table class="table cart-table">
+                <thead class="cart-thead">
+                    <tr>
+                        <th colspan="4">
+                            items
+                        </th>
+                    </tr>
+                </thead>
+                {% for cart_item in cart_items  %}
+                    <tr>
+                        <td><a href="{{ cart_item.product.get_url }}">
+                            <img src="{{ cart_item.product.image.url }}" alt="" width="100px" height="100px">
+                        </a></td>
+                        <td class="text-left"> {{ cart_item.product.name}}
+                            <br>
+                            SKU: 7
+                            <br>
+                            Unit Price: {{ cart_item.product.price}} $
+                            <br>
+                            Quantity: {{ cart_item.quantity }}
+                        </td>
+                        <td>
+                            ${{cart_item.sub_total}}
+                        </td>
+                        <td class="">
+                            {% if cart_item.quantity < cart_item.product.stock %}
+                                    <a href="{% url 'add_cart' cart_item.product.id %}"><span class="material-icons cart-icon">
+                                        add
+                                        </span></a>
+                                    <a href="{% url 'cart_remove' cart_item.product.id %}"><span class="material-icons cart-icon">
+                                        remove
+                                        </span></a>
+                                    <a href="{% url 'cart_remove_product' cart_item.product.id %}"><span class="material-icons cart-icon">
+                                        clear
+                                        </span></a>
+                            {% else %}
+                                <a href="{% url 'cart_remove' cart_item.product.id %}"><span class="material-icons cart-icon">
+                                    remove
+                                    </span></a>
+                                <a href="{% url 'cart_remove_product' cart_item.product.id %}"><span class="material-icons cart-icon">
+                                    clear
+                                    </span></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col12 col-sm-12 col-lg-6 text-center">
+            <table class="table cart-table">
+                <thead class="cart-thead">
+                    <tr>
+                        <th colspan="4">
+                            Check out
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Please check your cart</td>
+                    </tr>
+                    <tr class="text-left">
+                        <td>Total: <strong>{{ total }}$</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mx-auto">
+                <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <button class="btn btm-lg btn-block bg-dark text-white">
+                        Back
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    
+{% endblock content %}
